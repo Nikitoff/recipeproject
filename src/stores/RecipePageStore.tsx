@@ -1,6 +1,6 @@
 // src/stores/RecipePageStore.tsx
 import { makeAutoObservable } from "mobx";
-import { Recipe } from "@/types/recipe";
+import { Recipe } from "@/shared/types/recipe";
 import { getRecipeById } from "@/services/api";
 
 export class RecipePageStore {
