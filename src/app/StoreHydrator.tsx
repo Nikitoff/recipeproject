@@ -1,0 +1,25 @@
+'use client';
+
+import React, { useEffect } from 'react';
+import { useStore } from '@/stores/RootStore';
+import type { Recipe } from '@/shared/types/recipe';
+
+type Props = {
+  recipes: Recipe[];
+  totalPages: number;
+  categories: any[];
+  searchTerm: string;
+  categoryId: string;
+  currentPage: number;
+};
+
+export default function StoreHydrator({ recipes, totalPages, categories, searchTerm, categoryId, currentPage }: Props) {
+  const { recipeStore } = useStore();
+  useEffect(() => {
+    recipeStore.reset();
+    recipeStore.hydrate({ recipes, totalPages, categories, searchTerm, categoryId, currentPage });
+  }, [recipeStore, recipes, totalPages, categories, searchTerm, categoryId, currentPage]);
+  return null;
+}
+
+

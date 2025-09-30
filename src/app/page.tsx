@@ -1,95 +1,79 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import React from "react";
+import { Metadata } from "next";
+import MainImage from "@components/pageSection/MainPage/MainImage/MainImage";
+import RecipeListSection from "@components/pageSection/MainPage/RecipeListSection/RecipeListSection";
+import { getRecipes } from "@/services/api";
+import StoreHydrator from "./StoreHydrator";
 
-export default function Home() {
+export const metadata: Metadata = {
+  title: "Food Project - Рецепты",
+  description: "Найдите  рецепты для любого случая - от будничных ужинов до праздничных застолий",
+  keywords: ["рецепты", "кулинария", "еда", "готовка", "блюда"],
+  openGraph: {
+    title: "Food Project - Рецепты",
+    description: "Найдите  рецепты для любого случая",
+    type: "website",
+    locale: "ru_RU",
+  },
+};
+
+async function getInitialData(search: string, category: string, page: number) {
+  
+  const data = await getRecipes({ name: search, category, page });
+  
+  return data;
+}
+
+async function getCategories() {
+  try {
+    const base = process.env.STRAPI_URL || '';
+    if (!base) return [];
+    
+    const res = await fetch(`${base}/api/meal-categories?populate=*`, {
+      cache: 'no-store',
+      headers: {
+        'Authorization': `Bearer ${process.env.STRAPI_API_TOKEN || ''}`,
+        'Content-Type': 'application/json'
+      }
+    });
+    
+    if (!res.ok) return [];
+    const data = await res.json();
+    return data?.data || [];
+  } catch (e) {
+    
+    return [];
+  }
+}
+
+export default async function MainPage({ searchParams }: { searchParams: Promise<{ search?: string; category?: string; page?: string }> }) {
+  const params = await searchParams;
+  const search = params?.search || "";
+  const category = params?.category || "";
+  const page = Number(params?.page || 1);
+  let recipes: any[] = [];
+  let totalPages = 1;
+  let categories: any[] = [];
+  
+  try {
+    const [data, categoriesData] = await Promise.all([
+      getInitialData(search, category, page),
+      getCategories()
+    ]);
+    recipes = data?.data || [];
+    totalPages = data?.meta?.pagination?.pageCount || 1;
+    categories = categoriesData;
+  } catch (e) {
+    // безопасно отрисуем пустое состояние вместо 500
+  }
+  
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    <>
+      <StoreHydrator recipes={recipes} totalPages={totalPages} categories={categories} searchTerm={search} categoryId={category} currentPage={page} />
+      <MainImage />
+      <RecipeListSection />
+    </>
   );
 }
+
+ 
