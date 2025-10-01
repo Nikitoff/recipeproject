@@ -101,7 +101,7 @@ const RecipeListSection = () => {
                 onClick={handleSearchClick}
                 className={styles.searchButton}
               >
-                <Image src="/search.svg" alt="Search" width={24} height={24} />
+                <Image src="/Search.svg" alt="Search" width={24} height={24} />
               </button>
             }
           />
