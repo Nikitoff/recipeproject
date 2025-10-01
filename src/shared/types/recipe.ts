@@ -1,36 +1,36 @@
-export interface UploadFile {
+export type UploadFile= {
     id: number;
     documentId: string;
     name: string;
     url: string;
 }
 
-export interface Ingredient {
+export type Ingredient ={
     id: number;
     name: string;
     amount: number;
     unit: string;
 }
 
-interface Direction {
+type Direction ={
     id: number;
     description: string;
     image: UploadFile;
 }
 
-interface Equipment {
+type Equipment ={
     id: number;
     name: string;
 }
 
-export interface Category {
+export type Category= {
     id: number;
     documentId: string;
     title: string;
     image: UploadFile;
 }
 
-export interface Recipe {
+export type Recipe= {
     id: number;
     documentId: string;
     name: string;
@@ -50,7 +50,7 @@ export interface Recipe {
     vegetarian: boolean;
 }
 
-export interface PaginatedResponse {
+export type PaginatedResponse ={
     data: Recipe[];
     meta: {
         pagination: {
@@ -62,7 +62,7 @@ export interface PaginatedResponse {
     };
 }
 
-export interface RecipeFilters {
+export type RecipeFilters ={
     name?: string;
     category?: string;
     page?: number;

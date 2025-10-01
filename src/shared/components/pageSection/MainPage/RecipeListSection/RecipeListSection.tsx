@@ -1,9 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./RecipeListSection.module.scss";
 import Input from "@components/ui/Input/Input";
-import MultiDropdown, { Option } from "@components/ui/MultiDropdown/MultiDropdown";
-import { useRouter, useSearchParams } from "next/navigation";
+import MultiDropdown from "@components/ui/MultiDropdown/MultiDropdown";
+import { useRouter} from "next/navigation";
 import { useStore } from "@/stores/RootStore";
 import { observer } from "mobx-react-lite";
 import Card from "@components/ui/Card";
@@ -11,9 +11,10 @@ import { getFirstImageUrl } from "../../../../../services/api";
 import Loader from "@components/ui/Loader";
 import Pagination from "@components/ui/Pagination/Pagination";
 import Image from "next/image";
+import type { Category, Ingredient } from "@/shared/types/recipe";
 const RecipeListSection = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  
   const { recipeStore, favoritesStore } = useStore();
   const [searchInput, setSearchInput] = useState(recipeStore.searchTerm);
 
@@ -25,7 +26,7 @@ const RecipeListSection = () => {
     return `${h ? `${h} ч ` : ""}${m} мин`;
   };
 
-  const formatIngredients = (ingredients: any[] | undefined): string => {
+  const formatIngredients = (ingredients: Ingredient[] | undefined): string => {
     if (!ingredients || !Array.isArray(ingredients)) return "Нет ингредиентов";
     return ingredients
       .map((ing) => `${ing?.name || "Неизвестно"} ${ing?.amount ?? 0}${ing?.unit || ""}`)
@@ -47,7 +48,7 @@ const RecipeListSection = () => {
 
   const CATEGORY_OPTIONS = [
     { key: "", value: "Все категории" },
-    ...recipeStore.categories.map((cat: any) => ({
+    ...recipeStore.categories.map((cat: Category) => ({
       key: String(cat.id),
       value: cat.title,
 

@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Pagination.module.scss";
-
+import Image from "next/image";
 type PaginationProps = {
     current: number;
     total: number;
@@ -16,8 +16,7 @@ const Pagination: React.FC<PaginationProps> = ({
     current,
     total,
     onChange,
-    prevIcon,
-    nextIcon,
+    
     className,
     pageClassName,
     dotsClassName,
@@ -42,7 +41,7 @@ const Pagination: React.FC<PaginationProps> = ({
     return (
         <div className={className}>
             <button className={styles.button} onClick={() => onChange(current - 1)} disabled={current === 1} aria-label="Previous page">
-                <img src="/arrowleft.svg"></img>
+                <Image src="/arrowleft.svg" alt="Previous" width={24} height={24} />
             </button>
             <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
                 {build().map((item) =>
@@ -61,7 +60,7 @@ const Pagination: React.FC<PaginationProps> = ({
                 )}
             </div>
             <button className={styles.button} onClick={() => onChange(current + 1)} disabled={current >= total} aria-label="Next page">
-                <img src="/arrowright.svg" alt="Next" />
+                <Image src="/arrowright.svg" alt="Next" width={24} height={24} />
             </button>
         </div>
     );

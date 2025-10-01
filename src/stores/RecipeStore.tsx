@@ -1,10 +1,10 @@
 import { makeAutoObservable } from "mobx";
-import { Recipe } from "@/shared/types/recipe";
+import type { Recipe, Category } from "@/shared/types/recipe";
 import { getRecipes } from "@/services/api";
 
 export class RecipeStore {
     recipes: Recipe[] = [];
-    categories: any[] = [];
+    categories: Category[] = [];
     loading = false;
     error: string | null = null;
     initialized = false;
@@ -24,19 +24,7 @@ export class RecipeStore {
         this.error = null;
 
         try {
-            const queryParams = {
-                populate: ["images", "ingradients"],
-                filters: {
-                    ...(this.searchTerm && { name: { $containsi: this.searchTerm } }),
-                    ...(this.categoryId && !isNaN(Number(this.categoryId)) && {
-                        category: { id: { $eq: Number(this.categoryId) } },
-                    }),
-                },
-                pagination: {
-                    page: this.currentPage,
-                    pageSize: this.pageSize,
-                },
-            } as const;
+            
 
             
             const response = await getRecipes({
@@ -48,8 +36,12 @@ export class RecipeStore {
 
             this.recipes = response.data || [];
             this.totalPages = response.meta?.pagination?.pageCount || 1;
-        } catch (err: any) {
-            this.error = err?.message || "Ошибка загрузки";
+        } catch (err: unknown) {
+            if (err && typeof err === "object" && "message" in err && typeof (err as { message?: unknown }).message === "string") {
+                this.error = (err as { message?: unknown }).message as string;
+            } else {
+                this.error = 'Ошибка';
+            }
             this.recipes = [];
             this.totalPages = 1;
         } finally {
@@ -131,7 +123,7 @@ export class RecipeStore {
     hydrate = (params: {
         recipes?: Recipe[];
         totalPages?: number;
-        categories?: any[];
+        categories?: Category[];
         searchTerm?: string;
         categoryId?: string;
         currentPage?: number;

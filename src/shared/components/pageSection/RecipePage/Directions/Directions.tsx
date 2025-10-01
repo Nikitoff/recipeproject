@@ -1,12 +1,12 @@
 import React from "react";
 import styles from "./directions.module.scss"
 
-interface Step {
+type Step = {
     id: number;
     description: string;
 }
 
-interface DirectionsProps {
+type DirectionsProps = {
     steps: Step[];
 }
 

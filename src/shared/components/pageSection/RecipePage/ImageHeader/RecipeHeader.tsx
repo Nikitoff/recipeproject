@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import styles from "./RecipeHeader.module.scss";
 
-interface RecipeHeaderProps {
+type RecipeHeaderProps = {
     imageUrl: string;
     totalTime: number;
     CookingTime: number
@@ -12,11 +12,7 @@ interface RecipeHeaderProps {
     rating: number;
 }
 
-const formatTime = (minutes: number): string => {
-    const h = Math.floor(minutes / 60);
-    const m = minutes % 60;
-    return `${h ? `${h} ч ` : ""}${m} мин`;
-};
+
 
 const RecipeHeader: React.FC<RecipeHeaderProps> = ({
     imageUrl,

@@ -1,13 +1,13 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useStore } from '@/stores/RootStore';
-import type { Recipe } from '@/shared/types/recipe';
+import type { Recipe, Category } from '@/shared/types/recipe';
 
 type Props = {
   recipes: Recipe[];
   totalPages: number;
-  categories: any[];
+  categories: Category[];
   searchTerm: string;
   categoryId: string;
   currentPage: number;

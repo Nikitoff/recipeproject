@@ -1,6 +1,6 @@
 // src/stores/RecipePageStore.tsx
 import { makeAutoObservable } from "mobx";
-import { Recipe } from "@/shared/types/recipe";
+import type { Recipe } from "@/shared/types/recipe";
 import { getRecipeById } from "@/services/api";
 
 export class RecipePageStore {
@@ -24,9 +24,13 @@ export class RecipePageStore {
             if (this.lastRequestedId === documentId) {
                 this.recipe = data;
             }
-        } catch (e: any) {
+        } catch (e: unknown) {
             if (this.lastRequestedId === documentId) {
-                this.error = e?.message ?? 'Ошибка';
+                if (e && typeof e === "object" && "message" in e && typeof (e as { message?: unknown }).message === "string") {
+                    this.error = (e as { message?: unknown }).message as string;
+                } else {
+                    this.error = 'Ошибка';
+                }
                 this.recipe = null;
             }
         } finally {

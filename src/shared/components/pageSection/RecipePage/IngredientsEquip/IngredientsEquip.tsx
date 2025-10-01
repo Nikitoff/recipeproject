@@ -2,19 +2,19 @@ import React from "react";
 import Image from "next/image";
 import styles from "./IngredientsEquip.module.scss";
 
-interface Ingredient {
+type Ingredient ={
     id: number | string;
     name: string;
     amount: number;
     unit: string;
 }
 
-interface Equipment {
+type Equipment ={
     id: number | string;
     name: string;
 }
 
-interface IngredientsEquipProps {
+type IngredientsEquipProps ={
     ingredients: Ingredient[];
     equipment: Equipment[];
 }

@@ -1,5 +1,7 @@
 import * as React from 'react'
-import Icon, { IconProps } from '../Icon';
+import Icon from '../Icon';
+import type { IconProps } from '../Icon';
+
 
 const ArrowDownIcon: React.FC<IconProps> = (props) => {
  return (

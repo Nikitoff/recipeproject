@@ -1,5 +1,5 @@
 import qs from 'qs';
-import { Recipe, PaginatedResponse, RecipeFilters } from '@/shared/types/recipe';
+import type { Recipe, PaginatedResponse, RecipeFilters } from '@/shared/types/recipe';
 
 function getStrapiBaseUrl() {
   return typeof window === 'undefined'
@@ -31,7 +31,11 @@ export const getRecipes = async (
 ): Promise<PaginatedResponse> => {
   const { name, category, page = 1, pageSize = 9 } = filters;
 
-  const queryParams: Record<string, any> = {
+  const queryParams: {
+    populate: string[];
+    pagination: { page: number; pageSize: number };
+    filters: Record<string, unknown>;
+  } = {
     populate: ['images', 'ingradients', 'category'],
     pagination: { page, pageSize },
     filters: {},
@@ -75,3 +79,4 @@ export default {
   getRecipeById,
   getFirstImageUrl,
 };
+

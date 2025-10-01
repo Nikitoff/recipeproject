@@ -1,9 +1,10 @@
 import React from "react";
-import { Metadata } from "next";
+import type { Metadata } from "next";
 import MainImage from "@components/pageSection/MainPage/MainImage/MainImage";
 import RecipeListSection from "@components/pageSection/MainPage/RecipeListSection/RecipeListSection";
 import { getRecipes } from "@/services/api";
 import StoreHydrator from "./StoreHydrator";
+import type { Recipe, Category } from "@/shared/types/recipe";
 
 export const metadata: Metadata = {
   title: "Food Project - Рецепты",
@@ -40,8 +41,8 @@ async function getCategories() {
     if (!res.ok) return [];
     const data = await res.json();
     return data?.data || [];
-  } catch (e) {
-    
+  } catch (error) {
+    console.error('Failed to load categories:', error);
     return [];
   }
 }
@@ -51,9 +52,9 @@ export default async function MainPage({ searchParams }: { searchParams: Promise
   const search = params?.search || "";
   const category = params?.category || "";
   const page = Number(params?.page || 1);
-  let recipes: any[] = [];
+  let recipes: Recipe[] = [];
   let totalPages = 1;
-  let categories: any[] = [];
+  let categories: Category[] = [];
   
   try {
     const [data, categoriesData] = await Promise.all([
@@ -63,8 +64,8 @@ export default async function MainPage({ searchParams }: { searchParams: Promise
     recipes = data?.data || [];
     totalPages = data?.meta?.pagination?.pageCount || 1;
     categories = categoriesData;
-  } catch (e) {
-    // безопасно отрисуем пустое состояние вместо 500
+  } catch (error) {
+    console.error('Failed to load initial data:', error);
   }
   
   return (
@@ -75,5 +76,3 @@ export default async function MainPage({ searchParams }: { searchParams: Promise
     </>
   );
 }
-
- 

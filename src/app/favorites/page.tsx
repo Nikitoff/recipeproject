@@ -8,14 +8,15 @@ import { useStore } from '@/stores/RootStore';
 import { observer } from 'mobx-react-lite';
 import { getFirstImageUrl } from '../../services/api';
 import { useRouter } from 'next/navigation';
+import type { Ingredient } from '@/shared/types/recipe';
 
-// Метаданные удалены - теперь в layout.tsx
+
 
 const FavoritesPage = () => {
     const { favoritesStore, recipeStore } = useStore();
     const router = useRouter();
     
-    // Загружаем все рецепты для избранного
+    
     React.useEffect(() => {
         const loadAllRecipes = async () => {
             try {
@@ -54,7 +55,7 @@ const FavoritesPage = () => {
         favoritesStore.isFavorite(recipe.documentId)
     );
 
-    const formatIngredients = (ingredients: any[] | undefined): string => {
+    const formatIngredients = (ingredients: Ingredient[] | undefined): string => {
         if (!ingredients || !Array.isArray(ingredients)) return 'Нет ингредиентов';
         return ingredients
             .map((ing) => `${ing?.name || 'Неизвестно'} ${ing?.amount ?? 0}${ing?.unit || ''}`)

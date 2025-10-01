@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import styles from "./Title.module.scss";
 
-interface RecipeTitleProps {
+type RecipeTitleProps ={
     title: string;
 }
 
