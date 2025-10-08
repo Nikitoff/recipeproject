@@ -21,6 +21,25 @@
     gap: $spacing-6;
     margin-top: $spacing-5;
 }
+@media (min-width: $breakpoint-sm) {
+    .cardsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: $breakpoint-lg) {
+    .cardsGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+@media (max-width: $breakpoint-md) {
+    .container {
+        padding: $spacing-4 $spacing-2;
+        gap: $spacing-8;
+    }
+}
 
 .empty {
     text-align: center;
@@ -42,7 +61,7 @@
     border-radius: $radius-sm;
     border: none;
     background: $color-brand;
-    color: $color-surface;
+    color: $color-text;
     cursor: pointer;
 }
 

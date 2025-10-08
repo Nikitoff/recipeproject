@@ -14,6 +14,24 @@
     max-width: 100%;
     margin: 120px auto 0;
     z-index: 1;
+
+    @media (max-width: 1440px) {
+        width: 95vw;
+        margin: 80px auto 0;
+    }
+    @media (max-width: 1024px) {
+        width: 98vw;
+        margin: 60px auto 0;
+    }
+    @media (max-width: 768px) {
+        width: 100vw;
+        margin: 32px 0 0 0;
+        border-radius: 0;
+    }
+    @media (max-width: 375px) {
+        width: 100vw;
+        margin: 16px 0 0 0;
+    }
 }
 
 .section {
@@ -42,4 +60,25 @@
     font-size: 16px;
     line-height: 20px;
     color: $color-text;
+
+    @media (max-width: 1440px) {
+        width: 90vw;
+        padding: 28px;
+    }
+    @media (max-width: 1024px) {
+        width: 98vw;
+        padding: 20px;
+    }
+    @media (max-width: 768px) {
+        width: 100vw;
+        padding: 12px 8px;
+        font-size: 15px;
+        line-height: 19px;
+        
+    }
+    @media (max-width: 375px) {
+        padding: 8px 2px;
+        font-size: 13px;
+        line-height: 17px;
+    }
 }

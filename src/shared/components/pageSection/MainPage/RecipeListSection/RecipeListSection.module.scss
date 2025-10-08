@@ -212,7 +212,7 @@
     }
 }
 
-// Mobile adjustments
+
 @media (max-width: $breakpoint-md) {
     .container {
         padding: $spacing-4 $spacing-2;
@@ -245,6 +245,31 @@
     .searchButton {
         width: 100%;
         max-width: 300px;
+    }
+}
+
+@media (max-width: 640px) {
+    .searchRow {
+        gap: 6px;
+        min-width: 0;
+        flex-wrap: nowrap;
+        align-items: stretch;
+        overflow-x: auto;
+        max-width: none;
+    }
+    .searchInput {
+        min-width: 0;
+        font-size: 15px;
+        padding-left: 8px;
+        padding-right: 8px;
+        flex: 1 1 0%;
+    }
+    .searchButton {
+        width: 36px;
+        min-width: 36px;
+        height: 36px;
+        font-size: 16px;
+        flex: 0 0 36px;
     }
 }
 

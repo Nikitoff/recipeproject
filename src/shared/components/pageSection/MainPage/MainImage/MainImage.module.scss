@@ -8,9 +8,24 @@
     background-image: url('/MainImage.png');
     background-size: cover;
     background-position: center;
+
+    @media (max-width: 1440px) {
+        width: 100vw;
+        height: 400px;
+    }
+    @media (max-width: 1024px) {
+        height: 300px;
+    }
+    @media (max-width: 768px) {
+        height: 200px;
+    }
+    @media (max-width: 375px) {
+        height: 120px;
+    }
 }
 
 .content {
+
     position: absolute;
     width: 459px;
     height: 323px;
@@ -19,6 +34,29 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media (max-width: 1440px) {
+        width: 60vw;
+        left: 20vw;
+        top: 120px;
+    }
+    @media (max-width: 1024px) {
+        width: 80vw;
+        left: 10vw;
+        top: 60px;
+    }
+    @media (max-width: 768px) {
+        width: 90vw;
+        height: 250px;
+        left: 5vw;
+        top: 30px;
+    }
+    @media (max-width: 375px) {
+        width: 98vw;
+        height: 200px;
+        left: 1vw;
+        top: 2px;
+    }
 }
 
 .title {
@@ -29,4 +67,29 @@
     text-align: center;
     color: $color-surface;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.imageTextWrapper {
+    width: 312px;
+    max-width: 90vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    @media (max-width: 1024px) {
+        width: 220px;
+    }
+    @media (max-width: 768px) {
+        width: 160px;
+    }
+    @media (max-width: 375px) {
+        width: 70px;
+    }
+}
+
+.imageText {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
 }

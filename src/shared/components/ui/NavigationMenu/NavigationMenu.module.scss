@@ -34,6 +34,9 @@
     font-size: $font-size-xl;
     line-height: 1.2;
     color: $color-text;
+    @media (max-width: 768px){
+        display: none;
+    }
 }
 
 .logoIcon {
@@ -48,9 +51,7 @@
     flex: 1;
     justify-content: center;
 
-    @media (max-width: $breakpoint-md) {
-        display: none;
-    }
+   
 }
 
 .navItem {
@@ -86,7 +87,7 @@
     height: $icon-md;
     cursor: pointer;
     transition: opacity 0.2s ease;
-
+    color: $color-primary;
     &:hover {
         opacity: 0.7;
     }
@@ -97,36 +98,4 @@
     height: 17px;
 }
 
-// Mobile menu toggle (if needed)
-.mobileMenuToggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: $spacing-2;
 
-    @media (max-width: $breakpoint-md) {
-        display: block;
-    }
-}
-
-.mobileMenu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    background: $color-surface;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: none;
-    flex-direction: column;
-    padding: $spacing-4;
-    gap: $spacing-2;
-
-    &.open {
-        display: flex;
-    }
-
-    @media (min-width: $breakpoint-md) {
-        display: none !important;
-    }
-}

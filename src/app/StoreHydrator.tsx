@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useStore } from '@/stores/RootStore';
-import type { Recipe, Category } from '@/shared/types/recipe';
+import type { Category, Recipe } from '@/shared/types/recipe';
 
 type Props = {
   recipes: Recipe[];

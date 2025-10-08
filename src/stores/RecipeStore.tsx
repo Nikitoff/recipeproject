@@ -88,6 +88,12 @@ export class RecipeStore {
         }
     };
 
+    getRandomDocumentId(): string | null {
+        if (this.recipes.length === 0) return null;
+        const randomIndex = Math.floor(Math.random() * this.recipes.length);
+        return this.recipes[randomIndex].documentId;
+    }
+
     setSearchTerm = (value: string) => {
         this.searchTerm = value;
         this.currentPage = 1;

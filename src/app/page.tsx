@@ -8,7 +8,7 @@ import type { Recipe, Category } from "@/shared/types/recipe";
 
 export const metadata: Metadata = {
   title: "Food Project - Рецепты",
-  description: "Найдите  рецепты для любого случая - от будничных ужинов до праздничных застолий",
+  description: "Найдите  рецепты для любого случая ",
   keywords: ["рецепты", "кулинария", "еда", "готовка", "блюда"],
   openGraph: {
     title: "Food Project - Рецепты",

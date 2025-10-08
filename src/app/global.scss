@@ -13,12 +13,24 @@ html {
     scroll-behavior: smooth;
 }
 
+:root {
+    --color-text: #000000;
+    --color-bg: #FFC0763B;
+    --color-surface: #ffffff;
+}
+
+[data-theme="dark"] {
+    --color-text: #ffffff;
+    --color-bg: #181818;
+    --color-surface: #232323;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
     line-height: 1.5;
-    color: $color-text;
-    background-color: $color-bg;
+    color: var(--color-text);
+    background-color: var(--color-bg);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }

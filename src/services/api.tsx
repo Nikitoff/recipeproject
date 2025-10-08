@@ -74,9 +74,11 @@ export function getFirstImageUrl(recipe: Recipe): string | null {
   return `${base}${url}`;
 }
 
+
 export default {
   getRecipes,
   getRecipeById,
   getFirstImageUrl,
+ 
 };
 

@@ -7,7 +7,7 @@ import { useRouter} from "next/navigation";
 import { useStore } from "@/stores/RootStore";
 import { observer } from "mobx-react-lite";
 import Card from "@components/ui/Card";
-import { getFirstImageUrl } from "../../../../../services/api";
+import { getFirstImageUrl } from "@/services/api";
 import Loader from "@components/ui/Loader";
 import Pagination from "@components/ui/Pagination/Pagination";
 import Image from "next/image";

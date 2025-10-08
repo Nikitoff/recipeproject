@@ -4,16 +4,32 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./NavigationMenu.module.scss";
 import { useRouter } from "next/navigation";
+import { useStore } from "@/stores/RootStore";
+import { observer } from "mobx-react-lite";
 
-const NavigationMenu = () => {
-  const navItems = [
-    { label: "Recipes", isActive: true },
-    { label: "Meals Categories", isActive: false },
-    { label: "Products", isActive: false },
-    { label: "Menu Items", isActive: false },
-    { label: "Meal Planning", isActive: false },
-  ];
+
+
+
+
+const NavigationMenu = observer(() => {
+  const { recipeStore, themeStore } = useStore();
   const navigate = useRouter();
+
+  const navItems = [
+    { label: "Recipes", isActive: true, href: "/" },
+    { 
+      label: "I'm Feeling Lucky", 
+      isActive: true, 
+      onClick: () => {
+        const id = recipeStore.getRandomDocumentId();
+        if (id) {
+          navigate.push(`/recipe/${id}`);
+        } else {
+          console.log('Нет доступных рецептов');
+        }
+      }
+    },
+  ];
 
   return (
     <nav className={styles.navbar}>
@@ -32,9 +48,19 @@ const NavigationMenu = () => {
         <div className={styles.navMenu}>
           {navItems.map((item) => (
             <div key={item.label} className={styles.navItem}>
-              <Link href="/" className={`${styles.navLink} ${item.isActive ? styles.active : ""}`}>
-                {item.label}
-              </Link>
+              {item.href ? (
+                <Link href={item.href} className={`${styles.navLink} ${item.isActive ? styles.active : ""}`}>
+                  {item.label}
+                </Link>
+              ) : (
+                <label
+                  htmlFor="button"
+                  onClick={item.onClick}
+                  className={`${styles.navLink} ${item.isActive ? styles.active : ""}`}
+                >
+                  {item.label}
+                </label>    
+              )}
             </div>
           ))}
         </div>
@@ -49,16 +75,19 @@ const NavigationMenu = () => {
             className={styles.heartIcon}
           />
           <Image
-            src="/userIcon.svg"
-            alt="user"
+            src="/sun.svg"
+            alt="sun"
             width={24}
             height={24}
             className={styles.userIcon}
+            onClick={() => themeStore.toggleTheme()}
           />
         </div>
       </div>
     </nav>
   );
-};
+});
 
 export default NavigationMenu;
+
+

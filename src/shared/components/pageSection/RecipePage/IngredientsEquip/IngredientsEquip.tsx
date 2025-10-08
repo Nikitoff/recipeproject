@@ -28,7 +28,7 @@ const IngredientsEquip: React.FC<IngredientsEquipProps> = ({ ingredients, equipm
             <div className={styles.grid}>
 
                 <div className={styles.columnWrapper}>
-                    <h2 className={styles.title}>Ingredients</h2>
+                    <h2 className={styles.title} style={{ color: "var(--color-text)" }}>Ingredients</h2>
                     <div className={styles.twoColumnGrid}>
                         {ingredients.map((ing) => (
                             <div key={ing.id} className={styles.item}>
@@ -41,7 +41,7 @@ const IngredientsEquip: React.FC<IngredientsEquipProps> = ({ ingredients, equipm
 
 
                 <div className={styles.equipmentWrapper}>
-                    <h2 className={styles.title}>Equipment</h2>
+                    <h2 className={styles.title} style={{ color: "var(--color-text)" }}>Equipment</h2>
                     <div className={styles.twoColumnGrid}>
                         {equipment.map((item) => (
                             <div key={item.id} className={styles.item}>
