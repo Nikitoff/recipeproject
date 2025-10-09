@@ -49,8 +49,6 @@ export const getRecipes = async (
   const queryString = qs.stringify(queryParams, { encodeValuesOnly: true });
   const base = getStrapiBaseUrl();
   const url = `${base}/api/recipes?${queryString}`;
-  console.log('API request URL:', url);
-  console.log('Query params:', queryParams);
   return apiFetch<PaginatedResponse>(url);
 };
 

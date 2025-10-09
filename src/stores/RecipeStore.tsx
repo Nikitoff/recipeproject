@@ -53,7 +53,7 @@ export class RecipeStore {
     loadCategories = async () => {
         
         if (typeof window !== 'undefined') {
-            console.log('Categories loading skipped on client side');
+            
             this.categories = [];
             return;
         }
@@ -61,7 +61,7 @@ export class RecipeStore {
         try {
             const base = process.env.STRAPI_URL || '';
             if (!base) {
-                console.log('STRAPI_URL not configured');
+                
                 this.categories = [];
                 return;
             }
@@ -75,7 +75,7 @@ export class RecipeStore {
             });
             
             if (!res.ok) {
-                console.log('Categories API not accessible:', res.status);
+                
                 this.categories = [];
                 return;
             }

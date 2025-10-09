@@ -25,7 +25,7 @@ const RecipePage = () => {
 
     if (recipePageStore.loading) {
         return (
-            <div style={{ display: 'flex', justifyContent: 'center', padding: '40px' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '100px' }}>
                 <Loader size="l" />
             </div>
         );
