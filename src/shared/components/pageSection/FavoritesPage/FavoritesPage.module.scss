@@ -17,9 +17,10 @@
 
 .cardsGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    gap: $spacing-6;
-    margin-top: $spacing-5;
+    grid-template-columns: repeat(1, 1fr);
+    gap: $spacing-8;
+    width: 100%;
+    max-width: 1240px;
 }
 @media (min-width: $breakpoint-sm) {
     .cardsGrid {
@@ -44,25 +45,27 @@
 .empty {
     text-align: center;
     padding: 60px 20px;
-    font-family: 'Roboto';
+    font-family: $font-base;
     color: $color-text;
 }
 
 .loading {
     text-align: center;
     padding: 60px 20px;
-    font-family: 'Roboto';
+    font-family: $font-base;
     color: $color-text;
 }
 
 .backBtn {
-    margin-top: $spacing-3;
+    margin-top: $spacing-6;
     padding: $spacing-2 $spacing-4;
     border-radius: $radius-sm;
     border: none;
     background: $color-brand;
     color: $color-text;
     cursor: pointer;
+    font-family: $font-base;
+    font-size: $font-size-md;
 }
 
 .deleteBtn {
@@ -70,6 +73,8 @@
     padding: 0.875rem 1.25rem;
     background: $color-brand-dark;
     border: none;
+    font-family: $font-base;
+    font-size: $font-size-md;
     border-radius: $radius-md;
     cursor: pointer;
 }

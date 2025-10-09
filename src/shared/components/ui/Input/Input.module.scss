@@ -82,7 +82,7 @@
 // Responsive adjustments
 @media (max-width: $breakpoint-sm) {
     .inputContainer {
-        flex-direction: column;
+        
         gap: $spacing-2;
         height: auto;
     }

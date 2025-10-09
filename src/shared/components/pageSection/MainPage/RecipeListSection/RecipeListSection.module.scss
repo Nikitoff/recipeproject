@@ -66,7 +66,7 @@
 }
 
 .searchButton {
-    width: 4rem; // 64px
+    width: 4rem; 
     height: $control-height;
     background: $color-brand;
     border: none;
@@ -233,45 +233,10 @@
         max-width: 300px;
     }
 
-    .searchRow {
-        flex-direction: column;
-        gap: $spacing-3;
-    }
-
-    .inputField {
-        width: 100%;
-    }
-
-    .searchButton {
-        width: 100%;
-        max-width: 300px;
-    }
+    
 }
 
-@media (max-width: 640px) {
-    .searchRow {
-        gap: 6px;
-        min-width: 0;
-        flex-wrap: nowrap;
-        align-items: stretch;
-        overflow-x: auto;
-        max-width: none;
-    }
-    .searchInput {
-        min-width: 0;
-        font-size: 15px;
-        padding-left: 8px;
-        padding-right: 8px;
-        flex: 1 1 0%;
-    }
-    .searchButton {
-        width: 36px;
-        min-width: 36px;
-        height: 36px;
-        font-size: 16px;
-        flex: 0 0 36px;
-    }
-}
+
 
 .pagination {
     display: flex;
@@ -310,9 +275,10 @@
     height: 43.5px;
     border: 1.5px solid $color-border;
     border-radius: $radius-sm;
-    background: $color-surface;
+    background: $color-bg;
     font-family: $font-base;
     font-size: $font-size-md;
+    color: $color-text;
     cursor: pointer;
     transition: all 0.2s ease;
     display: flex;
